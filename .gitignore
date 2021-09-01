@@ -1,6 +1,6 @@
 node_modules/
 yarn-error.log
-# dist/
-# lib/
+dist/
+lib/
 # types/
 .DS_Store

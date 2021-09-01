@@ -1334,6 +1334,81 @@
         onSearch: propTypes.func,
     };
 
+    var SiRadio = /** @class */ (function (_super) {
+        __extends(SiRadio, _super);
+        function SiRadio() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.handleClick = function (v, d) {
+                if (d) {
+                    return;
+                }
+                _this.props.onChange(v);
+            };
+            return _this;
+        }
+        SiRadio.prototype.render = function () {
+            var _this = this;
+            return (React__default['default'].createElement(components.View, null, this.props.options.map(function (v) {
+                return (React__default['default'].createElement(components.View, { className: 'radio-info', key: v[_this.props.valueKey], onClick: function () {
+                        return _this.handleClick(v[_this.props.valueKey], v[_this.props.disabledKey]);
+                    } },
+                    React__default['default'].createElement(components.View, { className: "radio-icon " + (v[_this.props.valueKey] === _this.props.value
+                            ? "radio-icon-selected"
+                            : "") }),
+                    React__default['default'].createElement(components.Text, { className: 'radio-text' }, v[_this.props.labelKey])));
+            })));
+        };
+        return SiRadio;
+    }(React__default['default'].Component));
+    // const SiRadio: React.FC<SiRadioProps> = (props) => {
+    //   const { value, options, valueKey, labelKey, disabledKey, onChange } = props;
+    //   const handleClick = (v: string, d: boolean) => {
+    //     if (d) {
+    //       return;
+    //     }
+    //     onChange(v);
+    //   };
+    //   return (
+    //     <View>
+    //       {options.map((v) => {
+    //         return (
+    //           <View
+    //             className="radio-info"
+    //             key={v[valueKey] as string}
+    //             onClick={() =>
+    //               handleClick(v[valueKey] as string, v[disabledKey] as boolean)
+    //             }
+    //           >
+    //             <View
+    //               className={`radio-icon ${
+    //                 v[valueKey] === value ? "radio-icon-selected" : ""
+    //               }`}
+    //             />
+    //             <Text className="radio-text">{v[labelKey] as string}</Text>
+    //           </View>
+    //         );
+    //       })}
+    //     </View>
+    //   );
+    // };
+    SiRadio.defaultProps = {
+        value: "",
+        options: [],
+        labelKey: "label",
+        valueKey: "value",
+        disabledKey: "disabled",
+        onChange: function () { return void 0; },
+    };
+    SiRadio.propTypes = {
+        value: propTypes.any,
+        options: propTypes.any,
+        labelKey: propTypes.any,
+        valueKey: propTypes.any,
+        disabledKey: propTypes.any,
+        onChange: propTypes.any,
+    };
+    // export default SiRadio;
+
     var SiSeparator = /** @class */ (function (_super) {
         __extends(SiSeparator, _super);
         function SiSeparator() {
@@ -1381,6 +1456,7 @@
     exports.SiCard = SiCard;
     exports.SiDialog = SiDialog;
     exports.SiInput = SiInput;
+    exports.SiRadio = SiRadio;
     exports.SiSearch = SiSearch;
     exports.SiSeparator = SiSeparator;
 

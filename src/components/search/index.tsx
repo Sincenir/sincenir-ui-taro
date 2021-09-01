@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from '@tarojs/components';
 import PropTypes from 'prop-types';
-import { SiSearchProps, SiSearchState } from '../../../types/search';
 
+import { SiSearchProps, SiSearchState } from '../../../types/search';
 import Input from '../input/index';
 
 export default class SiSearch extends React.Component<
