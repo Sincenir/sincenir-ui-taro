@@ -30,7 +30,9 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
               className={`radio-icon ${
                 v[valueKey] === value ? "radio-icon-selected" : ""
               }`}
-            />
+            >
+              {v[valueKey] === value ? (<View className='radio-selected'></View>) : ''}
+            </View>
             <Text className='radio-text'>{v[labelKey] as string}</Text>
           </View>
         );
