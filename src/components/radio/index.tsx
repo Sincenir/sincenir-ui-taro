@@ -17,7 +17,7 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
 
   return (
     <View>
-      {options.map((v) => {
+      {options.map((v, i) => {
         return (
           <View
             className='radio-info'
@@ -33,7 +33,8 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
             >
               {v[valueKey] === value ? (<View className='radio-selected'></View>) : ''}
             </View>
-            <Text className='radio-text'>{v[labelKey] as string}</Text>
+            <Text className='radio-text s-pr-md'>{v[labelKey] as string}</Text>
+            {props.children(i, v)}
           </View>
         );
       })}
@@ -48,7 +49,8 @@ SiRadio.defaultProps = {
   labelKey: 'label',
   valueKey: 'value',
   disabledKey: 'disabled',
-  onChange: () => void 0
+  onChange: () => void 0,
+  children: () => null
 };
 
 
@@ -59,6 +61,7 @@ SiRadio.propTypes = {
   valueKey: PropTypes.any,
   disabledKey: PropTypes.any,
   onChange: PropTypes.any,
+  children: PropTypes.any,
 };
 
 export default SiRadio;

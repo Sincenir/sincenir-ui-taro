@@ -12,6 +12,7 @@ export interface SiRadioProps extends SiComponent {
   labelKey: string
   valueKey: string
   disabledKey: string
+  children: (index: number, value: any) => any
   onChange: (v: string | number) => void
 }
 
