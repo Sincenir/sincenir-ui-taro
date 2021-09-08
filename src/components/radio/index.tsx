@@ -6,9 +6,12 @@ import { SiRadioProps } from "../../../types/radio";
 
 
 const SiRadio: React.FC<SiRadioProps> = (props) => {
-  const { value, options, valueKey, labelKey, disabledKey, onChange } = props;
+  const { value, options, valueKey, labelKey, disabledKey, disabled, onChange } = props;
 
   const handleClick = (v: string, d: boolean) => {
+    if (disabled) {
+      return;
+    }
     if (d) {
       return;
     }
@@ -49,6 +52,7 @@ SiRadio.defaultProps = {
   labelKey: 'label',
   valueKey: 'value',
   disabledKey: 'disabled',
+  disabled: false,
   onChange: () => void 0,
   children: () => null
 };
@@ -59,6 +63,7 @@ SiRadio.propTypes = {
   options: PropTypes.any,
   labelKey: PropTypes.any,
   valueKey: PropTypes.any,
+  disabled: PropTypes.any,
   disabledKey: PropTypes.any,
   onChange: PropTypes.any,
   children: PropTypes.any,
