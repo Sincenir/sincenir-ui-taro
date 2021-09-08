@@ -23,7 +23,9 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
       {options.map((v, i) => {
         return (
           <View
-            className='radio-info'
+            className={`radio-info ${
+              disabled ? 'radio-info__disabled' : ''
+            }`}
             key={v[valueKey] as string}
             onClick={() =>
               handleClick(v[valueKey] as string, v[disabledKey] as boolean)
@@ -32,6 +34,8 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
             <View
               className={`radio-icon ${
                 v[valueKey] === value ? "radio-icon-selected" : ""
+              } ${
+                disabled ? 'radio-icon-disable' : ''
               }`}
             >
               {v[valueKey] === value ? (<View className='radio-selected'></View>) : ''}
