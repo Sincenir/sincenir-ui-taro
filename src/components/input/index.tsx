@@ -58,6 +58,7 @@ export default class SiInput extends React.Component<
         onBlur={this.handleBlur}
         placeholder={this.props.placeholder}
         value={this.props.value}
+        disabled={this.props.disabled}
       ></Input>
     );
   }
@@ -69,6 +70,7 @@ SiInput.defaultProps = {
   placeholder: '',
   value: '',
   size: 'md',
+  disabled: false,
   onChange: () => {},
 };
 
@@ -79,4 +81,5 @@ SiInput.propTypes = {
   placeholder: PropTypes.string,
   size: PropTypes.string,
   onChange: PropTypes.func,
+  disabled: PropTypes.bool
 };

@@ -7,6 +7,7 @@ export interface SiInputProps extends SiComponent {
   value: string
   placeholder: string
   size: 'xs' | 'sm' | 'md' | 'xl' | 'lg'
+  disabled: boolean
   onChange: (e: any) => void
 }
 
@@ -17,6 +18,7 @@ export interface SiInputProps extends SiComponent {
  * @param value: 输入框的值
  * @param placeholder: 输入框显示的提示信息
  * @param size: 输入框的尺寸
+ * @param disabled: 禁用
  * @param onChange: 输入框内容改变时的回调
 */
 declare const SiInput: ComponentClass<SiInputProps>;
