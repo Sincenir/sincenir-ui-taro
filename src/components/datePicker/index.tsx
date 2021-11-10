@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Picker } from "@tarojs/components";
 import PropTypes from "prop-types";
-import { SiDatePickerProps } from "types/datePicker";
+import { SiDatePickerProps } from "../../../types/datePicker";
 
 export default class SiDatePicker extends React.Component<SiDatePickerProps> {
   public static defaultProps: SiDatePickerProps;
