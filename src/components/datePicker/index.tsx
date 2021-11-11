@@ -1,43 +1,39 @@
 import React from "react";
-import { View, Picker } from "@tarojs/components";
+import { Picker } from "@tarojs/components";
 import PropTypes from "prop-types";
+
+import { SiInput } from "types";
 import { SiDatePickerProps } from "../../../types/datePicker";
+import { formatDate } from "../../util/date";
 
-export default class SiDatePicker extends React.Component<SiDatePickerProps> {
-  public static defaultProps: SiDatePickerProps;
-  public static propType: PropTypes.InferProps<SiDatePickerProps>;
-
-  render() {
-    return (
-      <Picker
-        mode='date'
-        value={this.props.value}
-        onChange={(e) => this.props.onChange((e.detail.value as string))}
-      >
-        <View
-          className='s-row'
-          style={{alignItems: 'center'}}
-        >
-          <View>{this.props.label}：</View>
-          <View>{this.props.value}</View>
-        </View>
-      </Picker>
-    );
-  }
-}
+const SiDatePicker: React.FC<SiDatePickerProps> = (props) => {
+  const handleChange = (e: any) => {
+    const tmp = formatDate(e.target.value as string, props.format);
+    props.onChange(tmp);
+  };
+  return (
+    <Picker mode='date' value={props.value} onChange={(e) => handleChange(e)}>
+      <SiInput
+        value={props.value}
+        style={{ fontSize: "28rpx" }}
+        placeholder='请选择日期'
+      ></SiInput>
+    </Picker>
+  );
+};
 
 SiDatePicker.defaultProps = {
-  label: "当前选择",
   placeholder: "请选择日期",
   value: "",
-  format: "YYYY-MM-dd",
+  format: "yyyy-MM-DD",
   onChange: () => void 0,
 };
 
-SiDatePicker.propType = {
-  label: PropTypes.any,
+SiDatePicker.propTypes = {
   placeholder: PropTypes.any,
   value: PropTypes.any,
   format: PropTypes.any,
-  onChange: PropTypes.any.isRequired,
-};
+  onChange: PropTypes.any,
+}
+
+export default SiDatePicker;

@@ -1,11 +1,10 @@
-import { ComponentClass } from 'react';
+import React from 'react';
 import SiComponent from './base';
 
 export interface SiDatePickerProps extends SiComponent {
-  label?: string
   placeholder?: string
   value: string
-  format?: 'YYYY-MM-dd' | 'YY-MM-dd' | 'MM-dd'
+  format?: 'yyyy-MM-DD' | 'MM-DD'
   onChange: (v?: string) => void
 }
 
@@ -17,6 +16,6 @@ export interface SiDatePickerProps extends SiComponent {
  * @param format: 日期格式 'YYYY-MM-dd' | 'YY-MM-dd' | 'MM-dd'
  * @param onChange: 日期更新的事件
 */
-declare const SiDatePicker: ComponentClass<SiDatePickerProps>;
+declare const SiDatePicker: React.FC<SiDatePickerProps>;
 
 export default SiDatePicker;

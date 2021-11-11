@@ -2,13 +2,13 @@ import { ComponentClass } from 'react';
 import SiComponent from './base';
 
 export interface SiInputProps extends SiComponent {
-  maxlength: string
-  borderless: boolean
-  value: string
-  placeholder: string
-  size: 'xs' | 'sm' | 'md' | 'xl' | 'lg'
-  disabled: boolean
-  onChange: (e: any) => void
+  maxlength?: string
+  borderless?: boolean
+  value?: string
+  placeholder?: string
+  size?: 'xs' | 'sm' | 'md' | 'xl' | 'lg'
+  disabled?: boolean
+  onChange?: (e: any) => void
 }
 
 /**
