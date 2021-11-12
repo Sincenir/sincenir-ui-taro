@@ -2,7 +2,7 @@ import React from "react";
 import { Picker } from "@tarojs/components";
 import PropTypes from "prop-types";
 
-import { SiInput } from "types";
+import SiInput from "../input/index";
 import { SiDatePickerProps } from "../../../types/datePicker";
 import { formatDate } from "../../util/date";
 
@@ -17,6 +17,7 @@ const SiDatePicker: React.FC<SiDatePickerProps> = (props) => {
         value={props.value}
         style={{ fontSize: "28rpx" }}
         placeholder='请选择日期'
+        onChange={() => {}}
       ></SiInput>
     </Picker>
   );
@@ -34,6 +35,6 @@ SiDatePicker.propTypes = {
   value: PropTypes.any,
   format: PropTypes.any,
   onChange: PropTypes.any,
-}
+};
 
 export default SiDatePicker;

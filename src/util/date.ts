@@ -93,7 +93,7 @@ export function dateList(startDate: TimeUnionType, endDate: TimeUnionType, forma
  * @param fmt 格式文本，y:年，q:季度，M:月，d:日，H:小时，m:分钟，s:秒，S:毫秒。例：`yyyy-MM-dd`
  * @return 格式化的内容，
  */
-export function formatDate(date: TimeUnionType = null, fmt: string = "yyyy-MM-dd"): string {
+export function formatDate(date: TimeUnionType = null, fmt: string = "yyyy-MM-DD"): string {
   if (!isDate(date)) {
     date = checkDate(date);
   }
@@ -104,7 +104,7 @@ export function formatDate(date: TimeUnionType = null, fmt: string = "yyyy-MM-dd
 
   var o = {
     "M+": date.getMonth() + 1, //月份
-    "d+": date.getDate(), //日
+    "D+": date.getDate(), //日
     "h+": date.getHours() % 12 == 0 ? 12 : date.getHours() % 12, //小时
     "H+": date.getHours(), //小时
     "m+": date.getMinutes(), //分

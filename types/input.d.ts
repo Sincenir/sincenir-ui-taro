@@ -8,7 +8,7 @@ export interface SiInputProps extends SiComponent {
   placeholder?: string
   size?: 'xs' | 'sm' | 'md' | 'xl' | 'lg'
   disabled?: boolean
-  onChange?: (e: any) => void
+  onChange: (e: any) => void
 }
 
 /**

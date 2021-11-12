@@ -6,3 +6,4 @@ export { default as SiInput } from './input';
 export { default as SiSearch } from './search';
 export { default as SiRadio } from './radio';
 export { default as SiSeparator } from './separator';
+export { default as SiDatePicker } from './datePicker'
