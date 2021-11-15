@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import PropTypes from "prop-types";
 
 import { RadioOption, SiRadioProps } from "../../../types/radio";
@@ -55,7 +55,7 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
           >
             <View className='s-column' style={{ width: "100%" }}>
               {/* default content */}
-              <View className='s-row'>
+              <View className='option-main'>
                 {/* icon */}
                 <View
                   className={getIconClass(v)}
@@ -67,7 +67,7 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
                   )}
                 </View>
                 {/* text */}
-                <Text className='s-pr-md'>{v[labelKey] as string}</Text>
+                <View className='option--text'>{v[labelKey] as string}</View>
               </View>
               {/* slot content（show after selection） */}
               {isSelect(v[valueKey]) ? (
