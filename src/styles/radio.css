@@ -6,13 +6,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 36px;
   padding: 16px 16px 16px 0px;
   border: 1px solid #e0e0e0;
   border-bottom: none;
 }
 .radio__container .radio--option .option-main {
   position: relative;
+  height: 36px;
   display: flex;
   flex-direction: row;
   align-items: center;
