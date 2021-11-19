@@ -12,13 +12,15 @@
 
     .option-main {
       position: relative;
-      height: 36px;
+      min-height: 36px;
       display: flex;
       flex-direction: row;
       align-items: center;
 
       .option--icon {
         border-radius: 100px;
+        min-width: 32px;
+        max-width: 32px;
         width: 32px;
         height: 32px;
         margin: 0 20px;
@@ -36,11 +38,6 @@
 
       .option--icon__selected {
         border: 2px solid #1976d2;
-      }
-
-      .option--text {
-        position: absolute;
-        left: 75px;
       }
     }
 

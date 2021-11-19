@@ -67,7 +67,7 @@ const SiRadio: React.FC<SiRadioProps> = (props) => {
                   )}
                 </View>
                 {/* text */}
-                <View className='option--text'>{v[labelKey] as string}</View>
+                <View>{v[labelKey] as string}</View>
               </View>
               {/* slot content（show after selection） */}
               {isSelect(v[valueKey]) ? (
