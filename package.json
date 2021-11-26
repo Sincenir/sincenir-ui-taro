@@ -1,6 +1,6 @@
 {
   "name": "taro-ui-sincenir",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "browser": "dist/index.umd.js",
   "module": "dist/index.esm.js",
   "main": "dist/index.js",

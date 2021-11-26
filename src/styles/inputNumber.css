@@ -1,0 +1,72 @@
+.si-input-number {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-top: 1PX #d6e4ef solid;
+  border-bottom: 1PX #d6e4ef solid;
+  border-right: 1PX #d6e4ef solid;
+  border-left: 1PX #d6e4ef solid;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  background-color: #FFF;
+  overflow: hidden;
+}
+.si-input-number .si-input-number__input {
+  display: inline-block;
+  width: 80rpx;
+  height: auto;
+  border-radius: 0;
+  color: #333;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 1.5;
+  border-left: 1PX #d6e4ef solid;
+  border-right: 1PX #d6e4ef solid;
+}
+.si-input-number .si-input-number__btn {
+  position: relative;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 12rpx;
+  color: #6190E8;
+  font-size: 0;
+  text-align: center;
+  line-height: 1;
+  overflow: hidden;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.si-input-number .si-input-number__btn .si-input-number__btn-add,
+.si-input-number .si-input-number__btn .si-input-number__btn-subtract {
+  font-size: 30px;
+  line-height: 0.64rem;
+}
+.si-input-number .si-input-number__btn .si-icon {
+  display: inline-block;
+  font-family: iconfont;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+.si-input-number .si-input-number__btn .si-icon-subtract::before {
+  content: "\e962";
+}
+.si-input-number .si-input-number__btn .si-icon-add::before {
+  content: "\e960";
+}
+.si-input-number .si-input-number--disabled {
+  color: #ccc;
+}
