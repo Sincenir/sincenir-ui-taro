@@ -25,7 +25,7 @@ const SiInputNumber: React.FC<SiInputNumberProps> = (props) => {
   };
 
   const clearData = (v: any): number => {
-    if (v == void 0) v = minValue;
+    if (v == void 0) v = 1;
     if (v > maxValue!) v = maxValue;
     if (v < minValue!) v = minValue;
     return v;
