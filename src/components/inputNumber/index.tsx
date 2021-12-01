@@ -73,8 +73,8 @@ const SiInputNumber: React.FC<SiInputNumberProps> = (props) => {
 
 SiInputNumber.defaultProps = {
   width: 120,
-  minValue: 0,
-  maxValue: 100,
+  minValue: Number.MIN_SAFE_INTEGER,
+  maxValue: Number.MAX_SAFE_INTEGER,
   step: 1,
   disabled: false,
   disabledInput: false,
