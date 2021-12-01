@@ -83,7 +83,7 @@ SiInputNumber.defaultProps = {
 };
 
 SiInputNumber.propTypes = {
-  value: PropTypes.any.isRequired,
+  value: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
