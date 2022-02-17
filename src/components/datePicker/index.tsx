@@ -12,7 +12,7 @@ const SiDatePicker: React.FC<SiDatePickerProps> = (props) => {
     props.onChange(tmp);
   };
   return (
-    <Picker mode='date' value={props.value} onChange={(e) => handleChange(e)}>
+    <Picker mode='date' value={props.value} onChange={(e) => handleChange(e)} disabled={props.disabled}>
       <SiInput
         value={props.value}
         style={{ fontSize: "28rpx" }}
