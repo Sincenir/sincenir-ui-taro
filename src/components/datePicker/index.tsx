@@ -18,7 +18,7 @@ const SiDatePicker: React.FC<SiDatePickerProps> = (props) => {
         style={{ fontSize: "28rpx" }}
         placeholder='请选择日期'
         onChange={() => {}}
-        disabled={props.disabled}
+        disabled
       ></SiInput>
     </Picker>
   );
