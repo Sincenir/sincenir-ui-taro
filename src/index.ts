@@ -9,3 +9,4 @@ export { default as SiSeparator } from './components/separator/Separator';
 export { default as SiDatePicker } from './components/datePicker/index';
 export { default as SiInputNumber } from './components/inputNumber/index';
 export { default as SiBtnToggle } from './components/btnToggle/index';
+export { default as SiCheckBox } from './components/checkbox/index';

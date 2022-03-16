@@ -3,7 +3,6 @@ import { View } from "@tarojs/components";
 import PropTypes from "prop-types";
 
 import { CheckBoxOption, SiCheckBoxProps } from "../../../types/checkBox";
-import "./checkbox.less";
 
 const SiCheckBox = (props: SiCheckBoxProps) => {
   const {

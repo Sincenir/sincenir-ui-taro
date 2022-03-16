@@ -8,4 +8,5 @@ export { default as SiRadio } from './radio';
 export { default as SiSeparator } from './separator';
 export { default as SiDatePicker } from './datePicker';
 export { default as SiInputNumber } from './inputNumber';
-export { default as SiBtnToggle } from './btnToggle'
+export { default as SiBtnToggle } from './btnToggle';
+export { default as SiCheckBox } from './checkBox';
