@@ -23,6 +23,8 @@
   left: 0;
   display: block;
   width: 32px;
+  min-width: 32px;
+  max-width: 32px;
   height: 32px;
   direction: ltr;
   background-color: #fff;
