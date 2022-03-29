@@ -12,14 +12,21 @@ const SiDatePicker: React.FC<SiDatePickerProps> = (props) => {
     props.onChange(tmp);
   };
   return (
-    <Picker mode='date' value={props.value} onChange={(e) => handleChange(e)} disabled={props.disabled}>
-      <SiInput
-        value={props.value}
-        style={{ fontSize: "28rpx" }}
-        placeholder='请选择日期'
-        onChange={() => {}}
-        disabled
-      ></SiInput>
+    <Picker
+      mode='date'
+      value={props.value}
+      onChange={(e) => handleChange(e)}
+      disabled={props.disabled}
+    >
+      {props.children || (
+        <SiInput
+          value={props.value}
+          style={{ fontSize: "28rpx" }}
+          placeholder={props.placeholder}
+          onChange={() => {}}
+          disabled
+        ></SiInput>
+      )}
     </Picker>
   );
 };
@@ -38,6 +45,7 @@ SiDatePicker.propTypes = {
   format: PropTypes.any,
   disabled: PropTypes.any,
   onChange: PropTypes.any,
+  children: PropTypes.any,
 };
 
 export default SiDatePicker;

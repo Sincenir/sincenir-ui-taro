@@ -5,7 +5,8 @@ export interface SiDatePickerProps extends SiComponent {
   placeholder?: string
   value: string
   format?: 'yyyy-MM-DD' | 'MM-DD'
-  disabled?: boolean 
+  disabled?: boolean
+  children?: any
   onChange: (v?: string) => void
 }
 
