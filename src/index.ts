@@ -5,6 +5,7 @@ export { default as SiDialog } from './components/dialog/index';
 export { default as SiInput } from './components/input/index';
 export { default as SiSearch } from './components/search/index';
 export { default as SiRadio } from './components/radio/index';
+export { default as SiSelect } from './components/select/index';
 export { default as SiSeparator } from './components/separator/Separator';
 export { default as SiDatePicker } from './components/datePicker/index';
 export { default as SiInputNumber } from './components/inputNumber/index';
