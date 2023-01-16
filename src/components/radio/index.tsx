@@ -1,90 +1,98 @@
 import React from "react";
 import { View } from "@tarojs/components";
 import PropTypes from "prop-types";
-
 import { RadioOption, SiRadioProps } from "../../../types/radio";
 
-const SiRadio: React.FC<SiRadioProps> = (props) => {
-  const {
-    value,
-    options,
-    valueKey,
-    labelKey,
-    disabledKey,
-    disabled,
-    onChange,
-  } = props;
+interface SiRadioState {
+  selectedKey: string;
+}
+class SiRadio extends React.Component<SiRadioProps, SiRadioState> {
+  public static propTypes: PropTypes.InferProps<SiRadioProps>;
+  public static defaultProps: SiRadioProps;
 
-  const handleClick = (v: string, d: boolean) => {
-    if (disabled) {
-      return;
+  constructor(props: SiRadioProps) {
+    super(props);
+    this.getOptionClass = this.getOptionClass.bind(this);
+    this.getIconClass = this.getIconClass.bind(this);
+    this.isSelect = this.isSelect.bind(this);
+
+    this.state = {
+      selectedKey: "",
+    };
+  }
+
+  componentWillReceiveProps(nextProps: SiRadioProps) {
+    const nextDef = nextProps.defaultSelected;
+    const propDef = this.props.defaultSelected;
+
+    if (nextDef !== propDef) {
+      if (nextDef !== void 0) {
+        this.setState({ selectedKey: nextDef });
+      } else {
+        this.setState({ selectedKey: "" });
+      }
     }
-    if (d) {
-      return;
-    }
+  }
+
+  getOptionClass(): string {
+    const { disabled } = this.props;
+    const classes = ["radio--option"];
+    if (disabled) classes.push("radio--option__disabled");
+    return classes.join(" ");
+  }
+
+  getIconClass(v: RadioOption): string {
+    const { disabled } = this.props;
+
+    const classes: Array<string> = [];
+    if (this.isSelect(v)) classes.push("option--icon__selected");
+    if (disabled) classes.push("option--icon__disable");
+    return classes.join(" ");
+  }
+
+  isSelect(option: RadioOption): boolean {
+    return option[this.props.valueKey] === this.state.selectedKey;
+  }
+
+  handleClick(o: RadioOption) {
+    const { valueKey, disabledKey, disabled, onChange } = this.props;
+    const v = o[valueKey] as string;
+    const d = o[disabledKey] ?? false;
+
+    if (disabled || d) return;
+
+    this.setState({ selectedKey: v });
     onChange(v);
-  };
-
-  const isSelect = (v: any): boolean => {
-    return v === value;
-  };
-
-  const getIconClass = (v: RadioOption): string => {
-    const classes: string[] = ['option--icon']
-    if (isSelect(v[valueKey])) classes.push('option--icon__selected')
-    if (disabled) classes.push('option--icon__disable')
-    return classes.join(' ')
   }
 
-  const getOptionClass = () => {
-    const classes: string[] = ['radio--option']
-    if (disabled) classes.push('radio--option__disabled')
-    return classes.join(' ')
-  }
+  render() {
+    const { options, valueKey, labelKey, children } = this.props;
 
-  return (
-    <View className='radio__container'>
-      {options.map((v, i) => {
-        return (
+    return (
+      <View className='radio__container'>
+        {options.map((option, i) => (
           <View
-            className={getOptionClass()}
-            key={v[valueKey] as string}
-            onClick={() =>
-              handleClick(v[valueKey] as string, v[disabledKey] as boolean)
-            }
+            className={this.getOptionClass()}
+            key={option[valueKey] as string}
+            onClick={() => this.handleClick(option)}
           >
-            <View className='s-column' style={{ width: "100%" }}>
-              {/* default content */}
-              <View className='option-main'>
-                {/* icon */}
-                <View
-                  className={getIconClass(v)}
-                >
-                  {isSelect(v[valueKey]) ? (
-                    <View className='radio__selected'></View>
-                  ) : (
-                    ""
-                  )}
-                </View>
-                {/* text */}
-                <View>{v[labelKey] as string}</View>
-              </View>
-              {/* slot content（show after selection） */}
-              {isSelect(v[valueKey]) ? (
-                <View className='s-ml-lg s-pl-sm'>{props.children(i, v)}</View>
-              ) : (
-                ""
-              )}
+            <View
+              className={"option--icon " + this.getIconClass(option)}
+            ></View>
+            <View style={{ flexGrow: 1 }}>
+              {children
+                ? children(option, i, this.isSelect(option))
+                : option[labelKey]}
             </View>
           </View>
-        );
-      })}
-    </View>
-  );
-};
+        ))}
+      </View>
+    );
+  }
+}
 
 SiRadio.defaultProps = {
-  value: "",
+  defaultSelected: "",
   options: [],
   labelKey: "label",
   valueKey: "value",
@@ -95,7 +103,7 @@ SiRadio.defaultProps = {
 };
 
 SiRadio.propTypes = {
-  value: PropTypes.any,
+  defaultSelected: PropTypes.any,
   options: PropTypes.any,
   labelKey: PropTypes.any,
   valueKey: PropTypes.any,

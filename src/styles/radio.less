@@ -10,51 +10,53 @@
     border: 1px solid #e0e0e0;
     border-bottom: none;
 
-    .option-main {
+    .option--icon {
+      flex-shrink: 0;
       position: relative;
-      min-height: 36px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      margin: 0 20px;
+      border: 1px solid #aaa;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
 
-      .option--icon {
-        border-radius: 100px;
-        min-width: 32px;
-        max-width: 32px;
-        width: 32px;
-        height: 32px;
-        margin: 0 20px;
-        border: 2px solid #aaa;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
+      &::after {
+        transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+        transform: scale(0);
 
-      .option--icon__disable {
-        background-color: #F5F5F5;
-      }
-
-      .option--icon__selected {
-        border: 2px solid #1976d2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        content: "";
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 0;
       }
     }
 
-    .radio__selected {
-      width: 16px;
-      height: 16px;
-      border-radius: 16px;
+    .option--icon__selected {
       background-color: #1976d2;
+      border: 1px solid #1976d2;
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
-  }
+    .option--icon__disable {
+      background-color: rgba(0, 0, 0, 0.04);
+      border-color: #d9d9d9;
 
-  .radio--option__disabled {
-    cursor: not-allowed;
-  }
-
-  .radio--options:active {
-    background-color: #eee;
+      &::after {
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+    }
   }
 }
