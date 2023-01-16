@@ -36,17 +36,19 @@ class SiRadio extends React.Component<SiRadioProps, SiRadioState> {
 
   getOptionClass(): string {
     const { disabled } = this.props;
-    const classes = ["radio--option"];
+    const classes: Array<string> = ["radio--option"];
     if (disabled) classes.push("radio--option__disabled");
     return classes.join(" ");
   }
 
   getIconClass(v: RadioOption): string {
-    const { disabled } = this.props;
-
+    const { disabled, needAnimation } = this.props;
     const classes: Array<string> = [];
+
+    if (needAnimation) classes.push("short-animation__all");
     if (this.isSelect(v)) classes.push("option--icon__selected");
     if (disabled) classes.push("option--icon__disable");
+
     return classes.join(" ");
   }
 
@@ -98,6 +100,7 @@ SiRadio.defaultProps = {
   valueKey: "value",
   disabledKey: "disabled",
   disabled: false,
+  needAnimation: true,
   onChange: () => void 0,
   children: () => null,
 };
@@ -107,8 +110,9 @@ SiRadio.propTypes = {
   options: PropTypes.any,
   labelKey: PropTypes.any,
   valueKey: PropTypes.any,
-  disabled: PropTypes.any,
   disabledKey: PropTypes.any,
+  disabled: PropTypes.any,
+  needAnimation: PropTypes.any,
   onChange: PropTypes.any,
   children: PropTypes.any,
 };

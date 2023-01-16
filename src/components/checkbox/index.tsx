@@ -12,6 +12,7 @@ const SiCheckBox = (props: SiCheckBoxProps) => {
     labelKey,
     disabledKey,
     disabled,
+    needAnimation,
     onChange,
   } = props;
 
@@ -41,8 +42,9 @@ const SiCheckBox = (props: SiCheckBoxProps) => {
 
   const getIconClass = (v: CheckBoxOption) => {
     const classes = ["option--icon"];
+    if (needAnimation) classes.push('short-animation__all')
     if (isSelect(v[valueKey])) classes.push("option--icon__selected");
-    if (disabled) classes.push("option--icon__disable");
+    if (disabled) classes.push("option--icon__disabled");
     return classes.join(" ");
   };
 
@@ -67,17 +69,14 @@ const SiCheckBox = (props: SiCheckBoxProps) => {
               {/* default content */}
               <View className='option-main'>
                 {/* icon */}
-                <View className={getIconClass(v)}>
-                  {isSelect(v[valueKey]) ? (
-                    <View className='checkbox__selected'></View>
-                  ) : null}
-                </View>
+                <View className={getIconClass(v)} />
                 {/* text */}
                 <View>
                   {v[labelKey]}
                   {isSelect(v[valueKey])}
                 </View>
               </View>
+
               {/* slot content（show after selection） */}
               {isSelect(v[valueKey]) ? (
                 <View className='s-ml-lg s-pl-sm'>{props.children(i, v)}</View>
@@ -97,6 +96,7 @@ SiCheckBox.defaultProps = {
   valueKey: "value",
   disabledKey: "disabled",
   disabled: false,
+  needAnimation: true,
   onChange: () => void 0,
   children: () => null,
 };
@@ -108,6 +108,7 @@ SiCheckBox.propTypes = {
   valueKey: PropTypes.any,
   disabled: PropTypes.any,
   disabledKey: PropTypes.any,
+  needAnimation: PropTypes.any,
   onChange: PropTypes.any,
   children: PropTypes.any,
 };

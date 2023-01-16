@@ -19,10 +19,8 @@
   margin: 0 20px;
   border: 1px solid #aaa;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
 }
 .radio__container .radio--option .option--icon::after {
-  transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
   transform: scale(0);
   position: absolute;
   top: 0;
@@ -51,4 +49,10 @@
 }
 .radio__container .radio--option .option--icon__disable::after {
   background-color: rgba(0, 0, 0, 0.25);
+}
+.short-animation__all {
+  transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+.short-animation__all::after {
+  transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
 }
