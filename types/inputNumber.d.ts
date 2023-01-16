@@ -1,17 +1,16 @@
-import React from 'react';
-import SiComponent from './base';
+import React from "react";
+import SiComponent from "./base";
 
 export interface SiInputNumberProps extends SiComponent {
-  value: string | number
-  width?: number
-  minValue?: number
-  maxValue?: number
-  step?: number
-  disabled?: boolean
-  disabledInput?: boolean
-  onChange: (v: number) => void
-  onBlur?: (v: number) => void
+  defaultValue?: string | number;
+  width?: number;
+  minValue?: number;
+  maxValue?: number;
+  size?: string;
+  disabled?: boolean;
+  disabledInput?: boolean;
+  onChange: (v: string) => void;
 }
 declare const SiInputNumber: React.FC<SiInputNumberProps>;
 
-export default SiInputNumber
+export default SiInputNumber;
