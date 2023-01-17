@@ -1,13 +1,12 @@
-import React from 'react';
-import { BaseEventOrig, Input } from '@tarojs/components';
-import PropTypes from 'prop-types';
-import { InputProps } from '@tarojs/components/types/Input';
+import React from "react";
+import { BaseEventOrig, Input } from "@tarojs/components";
+import PropTypes from "prop-types";
+import { InputProps } from "@tarojs/components/types/Input";
 
-import { SiInputProps } from '../../../types/input';
-
+import { SiInputProps } from "../../../types/input";
 
 interface SInputState {
-  focusClass: string;
+  isFocus: boolean;
 }
 
 export default class SiInput extends React.Component<
@@ -19,17 +18,21 @@ export default class SiInput extends React.Component<
 
   constructor(props: SiInputProps) {
     super(props);
-    this.state = { focusClass: '' };
+    this.state = { isFocus: false };
   }
 
   getClass = () => {
+    const { size, disabled } = this.props;
+    const { isFocus } = this.state;
+
     const className: Array<string> = this.props.className
-      ? this.props.className.split(' ')
+      ? this.props.className.split(" ")
       : [];
-    className.push('s-input');
-    className.push(`s-size-${this.props.size}`);
-    this.props.borderless && className.push(`s-input-borderless`);
-    return className.join(' ');
+    className.push("s-input");
+    className.push(`s-size-${size}`);
+    isFocus && className.push("s-input__focus");
+    disabled && className.push("s-input__disabled");
+    return className.join(" ");
   };
 
   handleInput = (e: BaseEventOrig<InputProps.inputEventDetail>) => {
@@ -38,38 +41,39 @@ export default class SiInput extends React.Component<
 
   handleFocus = () => {
     this.setState({
-      focusClass: 'input-focus',
+      isFocus: true,
     });
   };
 
   handleBlur = () => {
     this.setState({
-      focusClass: '',
+      isFocus: false,
     });
   };
 
   render() {
+    const { style, placeholder, value, disabled } = this.props;
     return (
       <Input
-        className={`${this.getClass()} ${this.state.focusClass}`}
-        style={this.props.style}
+        className={this.getClass()}
+        style={style}
         onInput={this.handleInput}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
-        placeholder={this.props.placeholder}
-        value={this.props.value}
-        disabled={this.props.disabled}
+        placeholder={placeholder}
+        value={value}
+        disabled={disabled}
       ></Input>
     );
   }
 }
 
 SiInput.defaultProps = {
-  maxlength: '140',
+  maxlength: "140",
   borderless: false,
-  placeholder: '',
-  value: '',
-  size: 'md',
+  placeholder: "",
+  value: "",
+  size: "md",
   disabled: false,
   onChange: () => {},
 };
@@ -81,5 +85,5 @@ SiInput.propTypes = {
   placeholder: PropTypes.string,
   size: PropTypes.string,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };

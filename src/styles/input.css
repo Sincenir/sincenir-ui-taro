@@ -1,0 +1,43 @@
+.s-input {
+  position: relative;
+  padding: 0px 20px;
+}
+.s-input::before {
+  content: "\00a0";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.42);
+}
+.s-input::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 4px solid #478de2;
+  transform: scaleX(0);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+.s-input__disabled::before {
+  border-bottom-style: dotted;
+}
+.s-input__focus::after {
+  transform: scaleX(1) translateX(0);
+}
+.s-border {
+  border: 2rpx solid #ccc;
+}
+.s-size-xs {
+  height: 40rpx;
+}
+.s-size-sm {
+  height: 48rpx;
+}
+.s-size-md {
+  height: 56rpx;
+}
+.s-size-xl {
+  height: 64rpx;
+}
