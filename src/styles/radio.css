@@ -21,18 +21,18 @@
   overflow: hidden;
 }
 .radio__container .radio--option .option--icon::after {
-  transform: scale(0);
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  content: "";
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #fff;
+  transform: scale(0);
   opacity: 0;
 }
 .radio__container .radio--option .option--icon__selected {
@@ -43,11 +43,11 @@
   opacity: 1;
   transform: scale(1);
 }
-.radio__container .radio--option .option--icon__disable {
+.radio__container .radio--option .option--icon__disabled {
   background-color: rgba(0, 0, 0, 0.04);
   border-color: #d9d9d9;
 }
-.radio__container .radio--option .option--icon__disable::after {
+.radio__container .radio--option .option--icon__disabled::after {
   background-color: rgba(0, 0, 0, 0.25);
 }
 .short-animation__all {

@@ -10,61 +10,53 @@
     border: 1px solid #e0e0e0;
     border-bottom: none;
 
-    .option-main {
+    .option--icon {
+      flex-shrink: 0;
       position: relative;
-      min-height: 36px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      width: 32px;
+      height: 32px;
+      margin: 0 20px;
+      border: 1px solid #aaa;
+      overflow: hidden;
 
-      .option--icon {
-        flex-shrink: 0;
-        position: relative;
-        width: 32px;
-        height: 32px;
-        margin: 0 20px;
-        border: 1px solid #aaa;
-        overflow: hidden;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 9px;
+        width: 10px;
+        height: 20px;
+        margin: auto;
+        border: 4px solid #fff;
+        border-left: 0;
+        border-top: 0;
 
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0px;
-          left: 9px;
-          width: 10px;
-          height: 20px;
-          margin: auto;
-          border: 4px solid #fff;
-          border-left: 0;
-          border-top: 0;
-
-          transform: rotate(45deg) scale(0);
-          transform-origin: center;
-          opacity: 0;
-        }
+        transform: rotate(45deg) scale(0);
+        transform-origin: center;
+        opacity: 0;
       }
+    }
 
-      .option--icon__selected {
-        position: relative;
-        display: inline-block;
-        background-color: #478de2;
-        border: 1px solid #1976d2;
+    .option--icon__selected {
+      position: relative;
+      display: inline-block;
+      background-color: #478de2;
+      border: 1px solid #1976d2;
 
-        &::after {
-          opacity: 1;
-          transform: rotate(45deg) scale(1);
-        }
+      &::after {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
       }
+    }
 
-      .option--icon__disabled {
-        background-color: rgba(0, 0, 0, 0.04);
-        border-color: #d9d9d9;
+    .option--icon__disabled {
+      background-color: rgba(0, 0, 0, 0.04);
+      border-color: #d9d9d9;
 
-        &::after {
-          border: 4px solid rgba(0, 0, 0, 0.25);
-          border-left: 0;
-          border-top: 0;
-        }
+      &::after {
+        border: 4px solid rgba(0, 0, 0, 0.25);
+        border-left: 0;
+        border-top: 0;
       }
     }
   }

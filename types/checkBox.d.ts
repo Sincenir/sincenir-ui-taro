@@ -7,14 +7,14 @@ export interface CheckBoxOption {
 }
 
 export interface SiCheckBoxProps extends SiComponent {
-  value: Array<string | number>;
+  defaultSelectedValues: Array<string>;
   options: Array<CheckBoxOption>;
   labelKey: string;
   valueKey: string;
   disabledKey: string;
   disabled: boolean;
   needAnimation?: boolean;
-  children: (index: number, value: any) => any;
+  children?: (option: CheckBoxOption, index: number, isSelect: boolean) => any;
   onChange: (v: Array<string | number>) => void;
 }
 

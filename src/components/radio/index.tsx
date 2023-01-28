@@ -47,7 +47,7 @@ class SiRadio extends React.Component<SiRadioProps, SiRadioState> {
 
     if (needAnimation) classes.push("short-animation__all");
     if (this.isSelect(v)) classes.push("option--icon__selected");
-    if (disabled) classes.push("option--icon__disable");
+    if (disabled) classes.push("option--icon__disabled");
 
     return classes.join(" ");
   }
@@ -102,7 +102,7 @@ SiRadio.defaultProps = {
   disabled: false,
   needAnimation: true,
   onChange: () => void 0,
-  children: () => null,
+  children: void 0,
 };
 
 SiRadio.propTypes = {
