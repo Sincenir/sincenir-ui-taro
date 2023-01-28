@@ -67,7 +67,7 @@ class SiInputNumber extends React.Component<
   }
 
   handleInput(e: BaseEventOrig<InputProps.inputEventDetail>) {
-    const value = this.handleValue(e.detail.value);
+    const value = e.detail.value;
     this.setState({ ...this.state, value: value });
     this.props.onChange(value);
   }
@@ -78,6 +78,12 @@ class SiInputNumber extends React.Component<
   }
 
   handleBlur() {
+    if (this.state.value) {
+      const value = this.handleValue(this.state.value);
+      this.setState({ ...this.state, value: value });
+      this.props.onChange(value);
+    }
+
     this.setState({ isFocus: false });
   }
 
