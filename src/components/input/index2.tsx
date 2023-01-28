@@ -3,10 +3,11 @@ import { BaseEventOrig, Input } from "@tarojs/components";
 import PropTypes from "prop-types";
 import { InputProps } from "@tarojs/components/types/Input";
 
-import { SiInputProps } from "../../../types/input";
+import { SiInputProps } from "../../../types/input2";
 
 interface SInputState {
   isFocus: boolean;
+  value: string;
 }
 
 export default class SiInput extends React.Component<
@@ -18,7 +19,23 @@ export default class SiInput extends React.Component<
 
   constructor(props: SiInputProps) {
     super(props);
-    this.state = { isFocus: false };
+    this.state = {
+      isFocus: false,
+      value: String(this.props.defaultValue) ?? "",
+    };
+  }
+
+  componentWillReceiveProps(nextProps: SiInputProps) {
+    const nextDef = nextProps.defaultValue;
+    const propDef = this.props.defaultValue;
+
+    if (nextDef !== propDef) {
+      if (nextDef !== void 0) {
+        this.setState({ ...this.state, value: String(nextDef) });
+      } else {
+        this.setState({ ...this.state, value: "" });
+      }
+    }
   }
 
   getClass = () => {
@@ -36,7 +53,9 @@ export default class SiInput extends React.Component<
   };
 
   handleInput = (e: BaseEventOrig<InputProps.inputEventDetail>) => {
-    this.props.onChange(e.detail.value);
+    const v = e.detail.value;
+    this.setState({ ...this.state, value: v });
+    this.props.onChange(v);
   };
 
   handleFocus = () => {
@@ -52,7 +71,7 @@ export default class SiInput extends React.Component<
   };
 
   render() {
-    const { style, placeholder, value, disabled } = this.props;
+    const { style, placeholder, disabled } = this.props;
     return (
       <Input
         className={this.getClass()}
@@ -61,7 +80,7 @@ export default class SiInput extends React.Component<
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         placeholder={placeholder}
-        value={value}
+        value={this.state.value}
         disabled={disabled}
       ></Input>
     );
@@ -72,7 +91,7 @@ SiInput.defaultProps = {
   maxlength: "140",
   borderless: false,
   placeholder: "",
-  value: "",
+  defaultValue: "",
   size: "md",
   disabled: false,
   onChange: () => {},
@@ -81,7 +100,7 @@ SiInput.defaultProps = {
 SiInput.propTypes = {
   maxlength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   borderless: PropTypes.bool,
-  value: PropTypes.string,
+  defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
   size: PropTypes.string,
   onChange: PropTypes.func,

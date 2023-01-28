@@ -1,97 +1,124 @@
 import React from "react";
-import { Input, Text, View } from "@tarojs/components";
+import { BaseEventOrig, Input } from "@tarojs/components";
 import PropTypes from "prop-types";
+import { InputProps } from "@tarojs/components/types/Input";
 
 import { SiInputNumberProps } from "../../../types/inputNumber";
 
-const SiInputNumber: React.FC<SiInputNumberProps> = (props) => {
-  const {
-    value,
-    width,
-    minValue,
-    maxValue,
-    step,
-    disabled,
-    disabledInput,
-    onChange,
-    onBlur,
-  } = props;
+interface SiInputNumberState {
+  isFocus: boolean;
+  value?: string;
+}
+class SiInputNumber extends React.Component<
+  SiInputNumberProps,
+  SiInputNumberState
+> {
+  public static propTypes: PropTypes.InferProps<SiInputNumberProps>;
+  public static defaultProps: SiInputNumberProps;
 
-  const handleBlur = (e: any) => {
-    if (disabled) return;
-    const num = clearData(e.target.value);
-    onChange(num);
-    onBlur?.(num);
-  };
+  constructor(props: SiInputNumberProps) {
+    super(props);
 
-  const clearData = (v: any): number => {
-    if (v == void 0) v = 1;
-    if (v > maxValue!) v = maxValue;
-    if (v < minValue!) v = minValue;
-    return v;
-  };
+    this.getInputClasses = this.getInputClasses.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleValue = this.handleValue.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
 
-  const handleAdd = () => {
-    if (disabled) return;
-    onChange(clearData(Number(value) + step!));
-  };
+    this.state = {
+      isFocus: false,
+      value: String(this.props.defaultValue) ?? "",
+    };
+  }
 
-  const handleSubtract = () => {
-    if (disabled) return;
-    onChange(clearData(Number(value) - step!));
-  };
+  componentWillReceiveProps(nextProps: SiInputNumberProps) {
+    const nextDef = nextProps.defaultValue;
+    const propDef = this.props.defaultValue;
 
-  return (
-    <View className='si-input-number'>
-      <View
-        className={`si-input-number__btn ${
-          value == minValue || disabled ? "si-input-number--disabled" : ""
-        }`}
-        onClick={handleSubtract}
-      >
-        <Text className='si-icon si-icon-subtract si-input-number__btn-subtract'></Text>
-      </View>
+    if (nextDef !== propDef) {
+      if (nextDef !== void 0) {
+        this.setState({ ...this.state, value: String(nextDef) });
+      } else {
+        this.setState({ ...this.state, value: "" });
+      }
+    }
+  }
+
+  getInputClasses(): string {
+    const { size, disabled } = this.props;
+    const { isFocus } = this.state;
+    const classes: Array<string> = [];
+
+    classes.push("s-input--number");
+    classes.push(`s-size--${size}`);
+    isFocus && classes.push("s-input--number__focus");
+    disabled && classes.push("s-input--number__disabled");
+
+    return classes.join(" ");
+  }
+
+  handleValue(v: string) {
+    let curValue = Number(v);
+    const { minValue, maxValue } = this.props;
+    if (minValue && curValue < minValue) curValue = minValue;
+    if (maxValue && curValue > maxValue) curValue = maxValue;
+
+    return String(curValue);
+  }
+
+  handleInput(e: BaseEventOrig<InputProps.inputEventDetail>) {
+    const value = this.handleValue(e.detail.value);
+    this.setState({ ...this.state, value: value });
+    this.props.onChange(value);
+  }
+
+  handleFocus() {
+    if (this.props.disabled) return;
+    this.setState({ isFocus: true });
+  }
+
+  handleBlur() {
+    this.setState({ isFocus: false });
+  }
+
+  render() {
+    const { disabled } = this.props;
+    const { value } = this.state;
+
+    return (
       <Input
+        className={this.getInputClasses()}
         type='number'
-        className='si-input-number__input'
-        style={{ minWidth: `${width}rpx` }}
-        value={String(value)}
-        onBlur={handleBlur}
-        disabled={disabledInput || disabled}
+        value={value}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        onInput={this.handleInput}
+        disabled={disabled}
       ></Input>
-      <View
-        className={`si-input-number__btn ${
-          value == maxValue || disabled ? "si-input-number--disabled" : ""
-        }`}
-        onClick={handleAdd}
-      >
-        <Text className='si-icon si-icon-add si-input-number__btn-add'></Text>
-      </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 SiInputNumber.defaultProps = {
+  defaultValue: "",
   width: 120,
   minValue: Number.MIN_SAFE_INTEGER,
   maxValue: Number.MAX_SAFE_INTEGER,
-  step: 1,
+  size: "md",
   disabled: false,
   disabledInput: false,
   onChange: () => void 0,
-  onBlur: () => void 0,
 };
 
 SiInputNumber.propTypes = {
-  value: PropTypes.number.isRequired,
+  defaultValue: PropTypes.any,
   width: PropTypes.number.isRequired,
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
-  step: PropTypes.number,
+  size: PropTypes.number,
   disabled: PropTypes.bool,
   disabledInput: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func,
 };
 
 export default SiInputNumber;
