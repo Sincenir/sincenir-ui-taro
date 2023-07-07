@@ -35,9 +35,10 @@ class SiRadio extends React.Component<SiRadioProps, SiRadioState> {
   }
 
   getOptionClass(): string {
-    const { disabled } = this.props;
+    const { disabled, bordered } = this.props;
     const classes: Array<string> = ["radio--option"];
     if (disabled) classes.push("radio--option__disabled");
+    if (!bordered) classes.push("no-border");
     return classes.join(" ");
   }
 
@@ -71,7 +72,7 @@ class SiRadio extends React.Component<SiRadioProps, SiRadioState> {
     const { options, valueKey, labelKey, children } = this.props;
 
     return (
-      <View className='radio__container'>
+      <View className={`radio__container ${this.props.bordered ? '' : 'no-border'}`}>
         {options.map((option, i) => (
           <View
             className={this.getOptionClass()}
@@ -103,6 +104,7 @@ SiRadio.defaultProps = {
   needAnimation: true,
   onChange: () => void 0,
   children: void 0,
+  bordered: true
 };
 
 SiRadio.propTypes = {
@@ -115,6 +117,7 @@ SiRadio.propTypes = {
   needAnimation: PropTypes.any,
   onChange: PropTypes.any,
   children: PropTypes.any,
+  bordered: PropTypes.any
 };
 
 export default SiRadio;

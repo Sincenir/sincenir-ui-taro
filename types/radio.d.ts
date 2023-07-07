@@ -13,6 +13,7 @@ export interface SiRadioProps extends SiComponent {
   disabledKey: string;
   disabled: boolean;
   needAnimation?: boolean;
+  bordered?: boolean;
   children?: (option: RadioOption, index: number, isSelect: boolean) => any;
   onChange: (v: string | number) => void;
 }
